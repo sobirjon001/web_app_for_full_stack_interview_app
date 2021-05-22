@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="../css/style.css" />
+    <title>Administrative page | Users</title>
+  </head>
+  <body>
+    <!-- users module -->
+    <div id="admin-container-outer">
+      <div id="admin-container-inner">
+        <div id="nav-bar">
+          <span class="module-link left active-link"> Users </span>
+          <a href="/app/html/admin_questions.html">
+            <span class="module-link left"> Questions </span>
+          </a>
+          <a href="/app/index.html">
+            <span class="module-link right">Log out</span>
+          </a>
+          <span id="nav-user-name" class="module-link right">
+            Welcome frend
+          </span>
+        </div>
+        <div id="users-module-container" class="module">
+          <div class="table-container">
+            <div class="table-navigation">
+              <div class="query-items">
+                <select
+                  name="sort admin status"
+                  id="select-isAdmin"
+                  class="query-item"
+                  onchange="JavaScript:getAllUsers(this.value)"
+                >
+                  <option value="All">All</option>
+                  <option value="Admin">Admin</option>
+                  <option value="User">User</option>
+                </select>
+                <div id="search-container" class="query-item">
+                  <input
+                    type="text"
+                    id="input-search-name"
+                    placeholder="Search by name"
+                  />
+                  <button
+                    id="button-search-name"
+                    onclick="JavaScript:searhUserByFullNameButtonHandler()"
+                  >
+                    ok
+                  </button>
+                  <button
+                    id="clear-update"
+                    onclick="JavaScript:clearUpdateButtonHandler()"
+                  >
+                    Clear / Update
+                  </button>
+                </div>
+                <div id="add-user" class="query-item">
+                  <button
+                    id="button-add-user"
+                    onclick="JavaScript:openAddNewUserForm()"
+                  >
+                    Add new User
+                  </button>
+                </div>
+                <span id="users-count" class="query-item"></span>
+              </div>
+              <div id="pages"></div>
+            </div>
+            <table id="users-table">
+              <thead>
+                <tr>
+                  <th>Action</th>
+                  <th>ID</th>
+                  <th>Full Name</th>
+                  <th>Email</th>
+                  <th>Admin</th>
+                </tr>
+              </thead>
+              <tbody></tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- add new user container -->
+    <div id="add-new-user-container" class="popup-form hidden">
+      <div class="form-inner">
+        <span id="input-new-user-exist-alert" class="alert-message hidden">
+          Account with given email already exist!<br />
+          Please use different email address.
+        </span>
+        <select
+          id="input-new-user-select-isadmin"
+          name="select_isadmin"
+          class="form-input"
+        >
+          <option value="0">User</option>
+          <option value="1">Admin</option>
+        </select>
+        <input
+          id="input-new-user-full-name"
+          type="text"
+          name="full_name"
+          placeholder="Full Name"
+          class="form-input"
+        />
+        <span id="input-new-user-full-name-alert" class="alert-message hidden">
+          Invalid full name! example: 'John Smith'
+        </span>
+        <input
+          id="input-new-user-email"
+          type="email"
+          name="email"
+          placeholder="Email"
+          class="form-input"
+        />
+        <span id="input-new-user-email-alert" class="alert-message hidden">
+          Invalid email! example: 'example@example.com'
+        </span>
+        <input
+          id="input-new-user-password"
+          type="password"
+          name="password"
+          placeholder="Password"
+          class="form-input"
+        />
+        <span id="input-new-user-password-alert" class="alert-message hidden">
+          Invalid password! At least: 8 characters, one digit<br />one upper
+          case letter , one lower case letter<br />one special character
+          !#@^*-$%&?"
+        </span>
+        <div class="form-buttons">
+          <button
+            id="button-add-new-user"
+            onclick="JavaScript:addUserButtonHandler()"
+          >
+            Add new User
+          </button>
+          <button
+            id="button-add-new-user-cancel"
+            onclick="JavaScript:addUserCancelHandler()"
+          >
+            Cancel
+          </button>
+        </div>
+      </div>
+    </div>
+    <!-- update user container -->
+    <div id="update-user-container" class="popup-form hidden">
+      <div class="form-inner">
+        <input id="user-id" type="text" disabled class="form-input" />
+        <span id="input-update-user-exist-alert" class="alert-message hidden">
+          Account with given email already exist!<br />
+          Please use different email address.
+        </span>
+        <select
+          id="input-update-user-select-isadmin"
+          name="select_isadmin"
+          class="form-input"
+        >
+          <option value="0">User</option>
+          <option value="1">Admin</option>
+        </select>
+        <input
+          id="input-update-user-full-name"
+          type="text"
+          name="full_name"
+          placeholder="Full Name"
+          class="form-input"
+        />
+        <span
+          id="input-update-user-full-name-alert"
+          class="alert-message hidden"
+        >
+          Invalid full name! example: 'John Smith'
+        </span>
+        <input
+          id="input-update-user-email"
+          type="email"
+          name="email"
+          placeholder="Email"
+          class="form-input"
+        />
+        <span id="input-update-user-email-alert" class="alert-message hidden">
+          Invalid email! example: 'example@example.com'
+        </span>
+        <input
+          id="input-update-user-password"
+          type="password"
+          name="password"
+          placeholder="Password"
+          class="form-input"
+        />
+        <span
+          id="input-update-user-password-alert"
+          class="alert-message hidden"
+        >
+          Invalid password! At least: 8 characters, one digit<br />one upper
+          case letter , one lower case letter<br />one special character
+          !#@^*-$%&?"
+        </span>
+        <div class="form-buttons">
+          <button
+            id="button-update-user"
+            onclick="JavaScript:updateUserButtonHandler()"
+          >
+            Update User
+          </button>
+          <button
+            id="button-update-user-cancel"
+            onclick="JavaScript:updateUserCancelHandler()"
+          >
+            Cancel
+          </button>
+        </div>
+      </div>
+    </div>
+    <script src="../js/admin_users.js"></script>
+  </body>
+</html>

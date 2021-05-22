@@ -1,0 +1,273 @@
+html {
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  overflow: hidden;
+  display: flex;
+}
+
+#login-container-outer {
+  margin: auto;
+  padding: 0;
+  position: relative;
+  display: flex;
+  max-width: 400px;
+  min-width: 300px;
+  max-height: 400px;
+  min-height: 300px;
+  background-color: rgb(189, 237, 255);
+}
+
+#login-container-inner {
+  margin: auto;
+  width: 280px;
+  height: 200px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+#login-menue {
+  position: relative;
+  width: 260px;
+  height: 40px;
+  display: flex;
+}
+
+.login-menue-items {
+  margin: auto;
+}
+
+.login-menue-item {
+  text-decoration: underline;
+  cursor: pointer;
+  color: blue;
+}
+
+.login-menue-item:hover {
+  color: red !important;
+}
+
+#login-form {
+  position: relative;
+  margin: 0px, auto;
+  width: 180px;
+  height: 140px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.input {
+  margin: auto;
+  width: 140px;
+}
+
+.button {
+  margin: auto;
+}
+
+button {
+  margin: 2px;
+}
+
+.alert-message {
+  text-align: center;
+  margin: auto;
+  color: red;
+}
+
+.hidden {
+  display: none;
+}
+
+.grey {
+  pointer-events: none;
+  opacity: 0.5;
+}
+
+/* admin page */
+#admin-container-outer {
+  width: 1024px;
+  height: 100vh;
+  margin: auto;
+  background-color: rgb(235, 235, 235);
+  display: flex;
+}
+
+#admin-container-inner {
+  width: 800px;
+  height: 90vh;
+  margin: auto;
+  padding: 10px;
+  border-radius: 10px;
+  border: 1px solid black;
+  box-shadow: 0px 0px 20px grey;
+}
+
+#nav-bar {
+  width: auto;
+  height: 30px;
+  padding: 0px 10px;
+  display: flexbox;
+}
+
+.module-link.left {
+  float: left;
+  margin: auto 10px;
+}
+
+.module-link.right {
+  float: right;
+  margin: auto 0px auto 10px;
+}
+
+.module-link {
+  text-decoration: none;
+  cursor: pointer;
+  height: fit-content;
+  padding: 3px;
+  color: grey;
+  transition: 1s;
+}
+
+.module-link:hover {
+  border-bottom: 1px solid black;
+  color: black;
+}
+
+.active-link {
+  border-bottom: 1px solid black;
+  color: black;
+}
+
+.module {
+  position: relative;
+  margin: 0;
+  width: auto;
+  height: auto;
+  padding: 5px;
+}
+
+.table-navigation {
+  width: 100%;
+  margin: 5px 0;
+  display: inline-flex;
+}
+
+.query-items {
+  float: left;
+  width: fit-content;
+  height: fit-content;
+  margin: auto 5px;
+  display: inline-flex;
+}
+
+.query-item {
+  width: fit-content;
+  height: fit-content;
+  margin: auto 2px;
+}
+
+#pages {
+  float: right;
+  margin: auto 5px auto auto;
+}
+
+.active-page {
+  background-color: aquamarine;
+}
+
+.table-container {
+  position: relative;
+  margin: 5px 0px;
+  height: 600px;
+  overflow: auto;
+}
+
+table,
+th,
+td {
+  border: 1px solid black;
+  height: auto;
+}
+
+table {
+  position: relative;
+  width: 100%;
+  margin: 5px 0px;
+}
+
+td {
+  padding: 2px;
+  justify-content: space-between;
+}
+
+.popup-form {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  margin: auto;
+  width: fit-content;
+  height: fit-content;
+  padding: 20px;
+  border: solid 1px black;
+  border-radius: 10px;
+  background-color: rgb(235, 235, 235);
+  box-shadow: 0px 0px 20px grey;
+}
+
+.form-inner {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+}
+
+.form-input {
+  margin: 5px auto;
+  width: 140px;
+}
+
+.form-buttons {
+  margin: auto;
+}
+
+.switch-container {
+  width: 100%;
+  height: 20px;
+  display: flex;
+}
+
+.switch-item {
+  width: 50px;
+  margin: auto;
+  cursor: pointer;
+}
+
+.form-large {
+  display: flex;
+  flex-direction: column;
+}
+
+.form-large-input-group {
+  margin: 5px auto;
+}
+
+.form-large-input {
+  margin: 5px auto;
+  width: 300px;
+  height: 100px;
+}

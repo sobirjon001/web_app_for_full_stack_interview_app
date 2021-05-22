@@ -1,0 +1,318 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="../css/style.css" />
+    <title>Administrative page | Questions</title>
+  </head>
+  <body>
+    <div id="admin-container-outer">
+      <div id="admin-container-inner">
+        <div id="nav-bar">
+          <a href="/app/html/admin_users.html">
+            <span class="module-link left"> Users </span>
+          </a>
+          <span id="questions-module-link" class="module-link left active-link">
+            Questions
+          </span>
+          <a href="/app/index.html">
+            <span id="nav-log-out" class="module-link right">Log out</span>
+          </a>
+          <span id="nav-user-name" class="module-link right">
+            Welcome frend
+          </span>
+        </div>
+        <!-- questions module -->
+        <div id="questions-module-container" class="module">
+          <div class="table-navigation">
+            <div class="query-items">
+              <select
+                name="sort-by-subject"
+                id="select-subject"
+                class="query-item"
+                onchange="JavaScript:getAllQuestions(this.value)"
+              >
+                <option value="0">All</option>
+              </select>
+              <div id="add-subjects" class="query-item">
+                <button
+                  id="button-add-subject"
+                  onclick="JavaScript:openAddNewSubjectForm()"
+                >
+                  Add Subjects
+                </button>
+                <button
+                  id="button-add-questions"
+                  onclick="JavaScript:openAddNewQuestionForm()"
+                >
+                  Add questions
+                </button>
+              </div>
+              <span id="subjects-count" class="query-item"></span>
+              <span class="query-item"> | </span>
+              <span id="questions-count" class="query-item"></span>
+            </div>
+            <div id="pages" class="hidden"></div>
+          </div>
+          <div id="two-tables-tabs">
+            <button
+              id="subjects-tab"
+              class="tables-tab"
+              onclick="JavaScript:showSubjectsTable()"
+            >
+              Show Subjects Table
+            </button>
+            <button
+              id="questions-tab"
+              class="tables-tab"
+              onclick="JavaScript:showQuestionsTable()"
+            >
+              Show Questions Table
+            </button>
+          </div>
+          <div class="table-container">
+            <table id="subjects-table">
+              <thead>
+                <tr>
+                  <th>ID</th>
+                  <th>Subjects</th>
+                  <th>Actions</th>
+                  <th>Active status</th>
+                </tr>
+              </thead>
+              <tbody></tbody>
+            </table>
+            <table id="questions-table" class="hidden">
+              <thead>
+                <tr>
+                  <th>ID</th>
+                  <th>time</th>
+                  <th>Subject</th>
+                  <th>Questions / Solutions</th>
+                  <th>Actions</th>
+                </tr>
+              </thead>
+              <tbody></tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- add new subject container -->
+    <div id="add-new-subject-container" class="popup-form hidden">
+      <div class="form-inner">
+        <span id="input-new-subject-exist-alert" class="alert-message hidden">
+          Given Subject already exist!<br />
+          Please use different Subject name.
+        </span>
+        <input
+          id="input-new-subject"
+          type="text"
+          name="subject_name"
+          placeholder="Subject Name"
+          class="form-input"
+        />
+        <div class="form-buttons">
+          <button
+            id="button-add-new-subject"
+            onclick="JavaScript:addNewSubjectButtonHandler()"
+          >
+            Add new Subject
+          </button>
+          <button
+            id="button-add-new-subject-cancel"
+            onclick="JavaScript:addNewSubjectCanselHandler()"
+          >
+            Cancel
+          </button>
+        </div>
+      </div>
+    </div>
+    <!-- update subject container -->
+    <div id="update-subject-container" class="popup-form hidden">
+      <div class="form-inner">
+        <input id="subject-id" type="text" class="form-input" disabled />
+        <span
+          id="input-update-subject-exist-alert"
+          class="alert-message hidden"
+        >
+          Given Subject already exist!<br />
+          Please use different Subject name.
+        </span>
+        <input
+          id="input-update-subject"
+          type="text"
+          name="subject_name"
+          placeholder="Subject Name"
+          class="form-input"
+        />
+        <span class="switch-container">
+          <span>Active status</span>
+          <img
+            id="subject-status-switch"
+            src="../img/switch_off.gif"
+            class="switch-item"
+            value="0"
+            ignore="true"
+            onclick="JavaScript:subjectStatusSwitchHandler(this)"
+          />
+        </span>
+        <div class="form-buttons">
+          <button
+            id="button-update-subject"
+            onclick="JavaScript:updateSubjectButtonHandler()"
+          >
+            Update Subject
+          </button>
+          <button
+            id="button-update-subject-cancel"
+            onclick="JavaScript:updateSubjectCanselHandler()"
+          >
+            Cancel
+          </button>
+        </div>
+      </div>
+    </div>
+    <!-- delete subject container -->
+    <div id="delete-subject-container" class="popup-form hidden">
+      <div class="form-inner">
+        <input
+          id="subject-id-to-delete"
+          type="text"
+          class="form-input"
+          disabled
+        />
+        <input
+          id="subject-name-to-delete"
+          type="text"
+          class="form-input"
+          disabled
+        />
+        <span class="alert-message">
+          All questions associated with this subject will be deleted<br />
+          Are you sure you want to delete? You can update it maby?
+        </span>
+        <div class="form-buttons">
+          <button
+            id="button-delete-subject"
+            onclick="JavaScript:deleteSubjectAction()"
+          >
+            Delete Subject
+          </button>
+          <button
+            id="button-update-subject-cancel"
+            onclick="JavaScript:deleteSubjectCansel()"
+          >
+            Cancel
+          </button>
+        </div>
+      </div>
+    </div>
+    <!-- add new question container -->
+    <div id="add-new-question-container" class="popup-form hidden">
+      <div class="form-large">
+        <span id="input-new-question-exist-alert" class="alert-message hidden">
+          Given Question already exist!<br />
+          Please use different Question.
+        </span>
+        <div class="form-large-input-group">
+          <label for="subjects">Subject: </label>
+          <select name="subjects" id="select-new-question-subjects"></select>
+          <label for="time"> | time in min: </label>
+          <select name="time" id="select-new-question-time">
+            <option value="1">1</option>
+            <option value="2">2</option>
+            <option value="3">3</option>
+            <option value="4">4</option>
+            <option value="5">5</option>
+          </select>
+        </div>
+        <textarea
+          name="question"
+          id="textarea-new-question"
+          placeholder="Question"
+          class="form-large-input"
+        ></textarea>
+        <textarea
+          name="solution"
+          id="textarea-new-solution"
+          placeholder="Solution"
+          class="form-large-input"
+        ></textarea>
+        <div class="form-buttons">
+          <button
+            id="button-add-new-question"
+            onclick="JavaScript:addNewQuestionButtonHandler()"
+          >
+            Add new Question
+          </button>
+          <button
+            id="button-add-new-question-cancel"
+            onclick="JavaScript:addNewQuestionCanselHandler()"
+          >
+            Cancel
+          </button>
+        </div>
+      </div>
+    </div>
+    <!-- update question container -->
+    <div id="update-question-container" class="popup-form hidden">
+      <div class="form-large">
+        <span
+          id="input-update-question-exist-alert"
+          class="alert-message hidden"
+        >
+          Given Question already exist!<br />
+          Please use different Question.
+        </span>
+        <input
+          id="input-update-question-id"
+          type="text"
+          class="form-input"
+          disabled
+        />
+        <div class="form-large-input-group">
+          <label for="subjects">Subject: </label>
+          <select name="subjects" id="select-update-question-subjects"></select>
+          <label for="time"> | time in min: </label>
+          <select name="time" id="select-update-question-time">
+            <option value="1">1</option>
+            <option value="2">2</option>
+            <option value="3">3</option>
+            <option value="4">4</option>
+            <option value="5">5</option>
+          </select>
+        </div>
+        <textarea
+          name="question"
+          id="textarea-update-question"
+          placeholder="Question"
+          class="form-large-input"
+        ></textarea>
+        <textarea
+          name="solution"
+          id="textarea-update-solution"
+          placeholder="Solution"
+          class="form-large-input"
+        ></textarea>
+        <div class="form-buttons">
+          <button
+            id="button-add-new-question"
+            onclick="JavaScript:updateQuestionButtonHandler()"
+          >
+            Update Question
+          </button>
+          <button
+            id="button-add-new-question-cancel"
+            onclick="JavaScript:updateQuestionCanselHandler()"
+          >
+            Cancel
+          </button>
+        </div>
+      </div>
+    </div>
+    <script src="../js/admin_questions.js"></script>
+  </body>
+</html>

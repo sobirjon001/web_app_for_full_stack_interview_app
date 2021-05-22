@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="shortcut icon" href="/app/img/favicon.ico" type="image/x-icon" />
+    <link rel="stylesheet" href="./css/style.css" />
+    <title>Login</title>
+  </head>
+  <body>
+    <div id="login-container-outer">
+      <div id="login-container-inner">
+        <div id="login-menue">
+          <div class="login-menue-items">
+            <span id="login-link" class="login-menue-item">login</span>
+            <span> | </span>
+            <span id="sign-up-link" class="login-menue-item">sign up</span>
+          </div>
+        </div>
+        <form id="login-form" class="form">
+          <span id="login-message">Login to existing account</span>
+          <span id="login-alert" class="alert-message hidden"
+            >Invalid email or password!</span
+          >
+          <input
+            type="text"
+            id="api_url"
+            class="input"
+            placeholder="API server URL"
+          />
+          <input
+            type="text"
+            id="input-fullname"
+            class="input hidden"
+            placeholder="Full name"
+          />
+          <input
+            type="text"
+            name="email"
+            id="input-email"
+            class="input"
+            placeholder="Email"
+          />
+          <input
+            type="text"
+            name="password"
+            id="input-password"
+            class="input"
+            placeholder="Password"
+          />
+          <input type="submit" value="Login" id="button-login" class="button" />
+        </form>
+      </div>
+    </div>
+
+    <script src="./js/login.js"></script>
+  </body>
+</html>

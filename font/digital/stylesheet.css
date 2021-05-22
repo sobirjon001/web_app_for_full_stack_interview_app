@@ -1,0 +1,12 @@
+@font-face {
+    font-family: digital;
+    src: url(digital-italic.ttf);
+    font-weight: 400;
+    font-style: italic;
+}
+@font-face {
+    font-family: digital;
+    src: url(digital-regular.ttf);
+    font-weight: 400;
+    font-style: regular;
+}

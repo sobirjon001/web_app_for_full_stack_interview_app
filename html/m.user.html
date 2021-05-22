@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="shortcut icon" href="../img/favicon.ico" type="image/x-icon" />
+    <link rel="stylesheet" href="../css/mobile.user.style.css" />
+    <link
+      rel="stylesheet"
+      id="dark-light-style"
+      href="../css/user.light.style.css"
+    />
+    <title>SDET interview questions prep</title>
+  </head>
+  <body>
+    <!-- play-container -->
+    <div id="play-container" class="light-panel">
+      <dev id="header" class="linear_container">
+        <label id="question_id" class="dark-item small-text-item"></label>
+        <span class="dark-item small-text-item"> | </span>
+        <label id="suject-name" class="dark-item small-text-item"></label>
+        <span class="dark-item small-text-item"> | </span>
+        <label id="questions-count" class="dark-item small-text-item"></label>
+        <span class="dark-item small-text-item"> | </span>
+        <a href="/app/index.html" class="small-text-item">
+          <button class="light-button">Log out</button>
+        </a>
+      </dev>
+      <label id="text-display" class="dark-item-border"> </label>
+      <div id="navigation" class="linear_container">
+        <button
+          class="light-button"
+          onclick="JavaScript:showSolutionButtonHandler()"
+        >
+          Show solution
+        </button>
+        <button class="light-button" onclick="JavaScript:runGame()">
+          Next question
+        </button>
+      </div>
+      <video id="video" poster="../img/persone.gif" autoplay></video>
+    </div>
+    <!-- control-container -->
+    <div id="controll-container">
+      <label id="rec-message" class="onvide-text-item"></label>
+      <label id="timer-label" class="onvide-text-item"></label>
+      <img
+        id="video-on"
+        src="../img/Power.png"
+        class="video-button"
+        onclick="JavaScript:videoPowerButtonHandler()"
+      />
+      <img
+        id="video-record"
+        src="../img/Rec.png"
+        class="video-button grey"
+        onclick="JavaScript:videoRecordButtonHandler()"
+      />
+      <img
+        id="video-play"
+        src="../img/Play.png"
+        class="video-button grey"
+        onclick="JavaScript:videoPlayButtonHandler()"
+      />
+      <img
+        id="video-pause"
+        src="../img/pause.png"
+        class="video-button grey"
+        onclick="JavaScript:videoPauseButtonHandler()"
+      />
+      <a id="video-download" download="test.webm" class="grey">
+        <img
+          src="../img/Download.png"
+          id="video-download-icon"
+          class="video-button"
+        />
+      </a>
+    </div>
+    <!-- menue-container -->
+    <div id="menue-container" class="hidden">
+      <div id="subjects-form" class="light-panel">
+        <h4 id="subjects-listing" class="dark-item">
+          Please choose subjects<br />
+          you want to pactise today
+        </h4>
+        <div id="subjects-checkbox-container"></div>
+        <button
+          id="update-subjects-button"
+          class="dark-item grey light-button"
+          onclick="JavaScript:updateSubjectsButtonHandler()"
+        >
+          Update subjects list
+        </button>
+      </div>
+      <div id="auto-solution-form" class="light-panel small-menue-form">
+        <label class="dark-item menue-item" class="dark-item">
+          Auto solution </label
+        ><img
+          value="on"
+          src="../img/switch_on.gif"
+          onclick="JavaScript:autoSolutionSwitchHandler(this)"
+          class="switch-item auto-solution-switch"
+        />
+      </div>
+      <div id="auto-recording-form" class="light-panel small-menue-form">
+        <label class="dark-item menue-item" class="dark-item">
+          Auto recording </label
+        ><img
+          value="off"
+          src="../img/switch_off.gif"
+          onclick="JavaScript:autoRecordingSwitchHandler(this)"
+          class="switch-item auto-recording-switch"
+        />
+      </div>
+      <div id="timer-form" class="light-panel small-menue-form">
+        <label class="dark-item menue-item" class="dark-item"> Timer </label
+        ><img
+          value="on"
+          src="../img/switch_on.gif"
+          onclick="JavaScript:timerSwitchHandler(this)"
+          class="switch-item timer-switch"
+        />
+      </div>
+      <div id="dark-light-form" class="light-panel small-menue-form">
+        <label class="dark-item menue-item" class="dark-item">
+          Light mode </label
+        ><img
+          value="on"
+          src="../img/switch_on.gif"
+          onclick="JavaScript:darkLightSwitchHandler(this)"
+          class="switch-item dark-light-switch"
+        />
+      </div>
+    </div>
+    <div id="main-menue-button-container">
+      <div
+        id="main-menue-button"
+        class="dark-panel"
+        value="1"
+        onclick="JavaScript:mainMenueButtonHandler(this)"
+      >
+        <h4 id="main-button-text" class="light-item">Menue</h4>
+      </div>
+    </div>
+    <script src="../js/gsap.min.js"></script>
+    <script src="../js/m.user.js"></script>
+  </body>
+</html>
