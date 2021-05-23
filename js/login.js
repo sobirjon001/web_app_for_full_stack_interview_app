@@ -8,9 +8,10 @@ const inputPassword = document.querySelector("#input-password");
 const buttonLogin = document.querySelector("#button-login");
 const loginLink = document.querySelector("#login-link");
 const signUpLink = document.querySelector("#sign-up-link");
+const inputApiUrl = document.querySelector("#api_url");
 
 // api base_uri settings
-const base_uri = "192.168.1.20:7000";
+let base_uri = "";
 
 // global variables
 let isLoggingIn = true;
@@ -47,6 +48,7 @@ function toSignUp() {
 }
 
 function loginButtonHandler(event) {
+  base_uri = inputApiUrl.value;
   event.preventDefault();
   if (isLoggingIn) {
     login();
@@ -56,7 +58,8 @@ function loginButtonHandler(event) {
 }
 
 function login() {
-  fetch("/api/users/login", {
+  let URL = base_uri + "/api/users/login";
+  fetch(URL, {
     method: "POST",
     headers: {
       "Content-Type": "application/x-www-form-urlencoded",
@@ -67,6 +70,7 @@ function login() {
     }),
   })
     .then(async (response) => {
+      console.log(response);
       if (response.ok) {
         loginAlert.classList.add("hidden");
         let data = await response.json();
@@ -77,6 +81,7 @@ function login() {
           location.replace("./html/admin_users.html");
         } else {
           sessionStorage.setItem("token", token);
+          sessionStorage.setItem("base_uri", base_uri);
           if (
             /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(
               navigator.userAgent
@@ -100,7 +105,8 @@ function login() {
 }
 
 function signUp() {
-  fetch("/api/users/sign_up", {
+  let URL = base_uri + "/api/users/sign_up";
+  fetch(URL, {
     method: "POST",
     headers: {
       "Content-Type": "application/x-www-form-urlencoded",

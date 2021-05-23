@@ -23,6 +23,7 @@ const buttonVideoPause = document.querySelector("#video-pause");
 const buttonVideoDownload = document.querySelector("#video-download");
 
 // global variables
+let base_uri = "";
 let userName = "";
 let token = "";
 let subjects = [];
@@ -53,8 +54,9 @@ let recMessageIntervalID = null;
 
 // functions
 (() => {
+  base_uri = sessionStorage.getItem("base_uri");
   token = sessionStorage.getItem("token");
-  fetch("/api/users/decode", {
+  fetch(`${base_uri}/api/users/decode`, {
     method: "POST",
     headers: {
       Authorization: "Bearer " + token,
@@ -100,7 +102,7 @@ function closeMenueForm() {
 }
 
 function getAllActiveSubjects() {
-  fetch("/api/questions/active_subjects", {
+  fetch(`${base_uri}/api/questions/active_subjects`, {
     method: "GET",
     headers: {
       Authorization: "Bearer " + token,
@@ -271,7 +273,7 @@ function recurringCallToGetQuestions(subjectsList, current_page, total_pages) {
     subject_name = subjectsList.splice(0, 1);
     current_page = 1;
   }
-  fetch("/api/questions/by_subject", {
+  fetch(`${base_uri}/api/questions/by_subject`, {
     method: "GET",
     headers: {
       Authorization: "Bearer " + token,
